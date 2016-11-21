@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/task/countdown.css" />
     <script src="assets/js/echarts-all.js"></script>
-    <!-- <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
     <script src="assets/js/jquery-1.7.1.min.js"></script>
     <script src="assets/task/countdown.js"></script>
 
 </head>
 <body>
-<div id="main" style="height:500px"></div>
-<div id="countdown" style="width:600px"></div>
+<div id="main" style="height:700px"></div>
+<div id="countdown" style="width:800px"></div>
 <p id="note"></p>
 
 <script type="text/javascript">
@@ -22,7 +21,7 @@
     var myChart = echarts.init(document.getElementById('main'));
     var option = {
         tooltip : {
-            formatter: "{a} <br/>{b} : {c}%"
+            formatter: "业务指标:120MUSD <br/>已完成:{c}MUSD"
         },
         series : [
             {
@@ -67,13 +66,13 @@
                     }
                 },
                 detail : {
-                    formatter:'{value}%',
+                    formatter:'已完成{value}MUSD',
                     textStyle: {       // 其余属性默认使用全局文本样式
                         color: 'auto',
                         fontWeight: 'bolder'
                     }
                 },
-                data:[{value: 0, name: '完成率'}]
+                data:[{value: 0, name: '业务指标'}]
             }
         ]
     };
@@ -102,17 +101,20 @@ var note = $('#note'),
         timestamp   : ts,
         callback    : function(days, hours, minutes, seconds){
 
-            var message = "为了梦想, 一起加油";
-            // message += days + " day" + ( days==1 ? '':'s' ) + ", ";
-            // message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
-            // message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
-            // message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+            var message = "距离2017年1月1日, 仅剩";
+            message += days + "天";
+            message += hours + "时" + ", ";
+            message += minutes + "分";
+            message += seconds + "秒" + " <br />";
             if(newYear) {
-                message += ", 一醉到天明!";
+                message += "金钱永不眠!";
             }
             else {
-                message += ", 明天就醒来了";
+                message += "明天就是新年啦!";
             }
+            message += "<br />"
+            message += "<br />"
+            message += "<br />"
             note.html(message);
         }
     });
