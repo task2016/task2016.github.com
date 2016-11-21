@@ -2,34 +2,52 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>任务倒计时</title>
+    <title>PHILIPS MR AOP</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/task/countdown.css" />
-    <script src="assets/js/echarts-all.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
     <script src="assets/js/jquery-1.7.1.min.js"></script>
     <script src="assets/task/countdown.js"></script>
-
 </head>
 <body>
-<div id="main" style="height:700px"></div>
-<div id="countdown" style="width:800px"></div>
-<p id="note"></p>
+<div>
+    <h1> HIT THE TARGET </h1>
+    <h3> -- PHILIPS MR AOP </h3>
+</div>
+<div id="main" style="height:500px;width:1000px;margin:0px auto;"></div>
+<div>
+    <h2>
+    距离2016年12月31日,仅剩
+    </h2>
+    <br/>
+</div>
+<div id="countdown" style="width:500px"></div>
+<div>
+    <h2>
+    与您共同见证!
+    </h2>
+    <br/>
+</div>
+<div id="note" style="text-align:left;"></div>
+
 
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts图表
     var myChart = echarts.init(document.getElementById('main'));
     var option = {
         tooltip : {
-            formatter: "业务指标:120MUSD <br/>已完成:{c}MUSD"
+            formatter: "{a} <br/> finished:{c}%"
         },
         series : [
             {
-                name:'业务指标',
+                name:'OIT/MUSD',
                 type:'gauge',
+                center : ['30%', '60%'],
+                radius : '60%',
                 min:0,
-                max:120,
-                splitNumber: 6,       // 分割段数，默认为5
+                max:151.8,
+                splitNumber: 10,       // 分割段数，默认为5
                 axisLine: {            // 坐标轴线
                     lineStyle: {       // 属性lineStyle控制线条样式
                         color: [[0.2, '#228b22'],[0.8, '#48b'],[1, '#ff4500']],
@@ -46,6 +64,9 @@
                 axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
                     textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
                         color: 'auto'
+                    },
+                    formatter:function(val) {
+                        return val.toFixed(0);
                     }
                 },
                 splitLine: {           // 分隔线
@@ -66,24 +87,82 @@
                     }
                 },
                 detail : {
-                    formatter:'已完成{value}MUSD',
+                    offsetCenter: [0, '65%'],
+                    formatter:'finished {value}%',
                     textStyle: {       // 其余属性默认使用全局文本样式
                         color: 'auto',
-                        fontWeight: 'bolder'
+                        fontWeight: 'bolder',
+                        fontSize: 12,
                     }
                 },
-                data:[{value: 0, name: '业务指标'}]
+                data:[{value: 0, name: 'OIT/MUSD'}]
+            },
+            {
+                name:'Sales/MUSD',
+                type:'gauge',
+                center : ['70%', '60%'],
+                radius : '60%',
+                min:0,
+                max:147.4,
+                splitNumber: 10,       // 分割段数，默认为5
+                axisLine: {            // 坐标轴线
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        color: [[0.2, '#228b22'],[0.8, '#48b'],[1, '#ff4500']],
+                        width: 8
+                    }
+                },
+                axisTick: {            // 坐标轴小标记
+                    splitNumber: 10,   // 每份split细分多少段
+                    length :12,        // 属性length控制线长
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        color: 'auto'
+                    }
+                },
+                axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                    formatter:function(val) {
+                        return val.toFixed(0);
+                    }
+                },
+                splitLine: {           // 分隔线
+                    show: true,        // 默认显示，属性show控制显示与否
+                    length :30,         // 属性length控制线长
+                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                        color: 'auto'
+                    }
+                },
+                pointer : {
+                    width : 5
+                },
+                title : {
+                    show : true,
+                    offsetCenter: [0, '-40%'],       // x, y，单位px
+                    textStyle: {       // 其余属性默认使用全局文本样式
+                        fontWeight: 'bolder',
+                        fontSize: 12
+                    }
+                },
+                detail : {
+                    offsetCenter: [0, '65%'],
+                    formatter:'finished {value}%',
+                    textStyle: {       // 其余属性默认使用全局文本样式
+                        color: 'auto',
+                        fontWeight: 'bolder',
+                        fontSize: 12,
+                    }
+                },
+                data:[{value: 0, name: 'Sales/MUSD'}]
             }
         ]
     };
 
     // 为echarts对象加载数据
     myChart.setOption(option);
-
+    window.onresize = myChart.resize;
     setInterval(function (){
-        option.series[0].data[0].value = 80;
+        option.series[0].data[0].value = 73.3;
+        option.series[1].data[0].value = 62.2;
         myChart.setOption(option, true);
-    }, 10);
+    }, 300);
 </script>
 <script type="text/javascript">
 var note = $('#note'),
@@ -101,21 +180,20 @@ var note = $('#note'),
     $('#countdown').countdown({
         timestamp   : ts,
         callback    : function(days, hours, minutes, seconds){
-
-            var message = "距离2017年1月1日, 仅剩";
-            message += days + "天";
-            message += hours + "时" + ", ";
-            message += minutes + "分";
-            message += seconds + "秒" + " <br />";
-            if(newYear) {
-                message += "金钱永不眠!";
-            }
-            else {
-                message += "明天就是新年啦!";
-            }
-            message += "<br />"
-            message += "<br />"
-            message += "<br />"
+            var message = "<br /> *以上数据更新于2016年10月31日";
+            // message += days + "天";
+            // message += hours + "时" + ", ";
+            // message += minutes + "分";
+            // message += seconds + "秒" + " <br />";
+            // if(newYear) {
+            //     message += "金钱永不眠!";
+            // }
+            // else {
+            //     message += "明天就是新年啦!";
+            // }
+            // message += "<br />"
+            // message += "<br />"
+            // message += "<br />"
             note.html(message);
         }
     });

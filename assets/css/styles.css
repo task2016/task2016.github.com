@@ -8,6 +8,32 @@ html{
 	position:relative;
 }
 
+h1,h2,h3,h4,h5,h6 {
+  font-family: "微软雅黑", sans-serif;
+  font-weight: normal;
+}
+h1,h2,h3,h4 {letter-spacing:2px;}
+h1 {
+	font-size:2.8em;
+	margin-top:4px;
+}
+h2 {font-size:1.6em;}
+h3 {
+	font-size:1.4em;
+	color:#f58220;
+	margin-right:-200px;
+	margin-bottom:-100px;
+}
+h4 {font-size:1.2em; color:#f58220;}
+h5,h6 {font-size:1.0em; color:#fffffb; margin-bottom:4px;margin-top:-2px;}
+body {
+  font-family: "Hiragino Sans GB", Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  text-align: center;
+  color: #000000;
+}
+p { word-break:break-all;}
 body{
 	min-height: 600px;
     padding: 200px 0 0;
