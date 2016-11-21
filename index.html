@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <title>任务倒计时</title>
-
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/task/countdown.css" />
     <script src="assets/js/echarts-all.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="assets/task/countdown.js"></script>
     <!-- <script src="//cdn.bootcss.com/echarts/3.3.1/echarts.common.js"></script> -->
 
 </head>
-
 <body>
-<div id="main" style="height:400px"></div>
+<div id="main" style="height:600px"></div>
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts图表
     var myChart = echarts.init(document.getElementById('main'));
@@ -86,11 +86,37 @@
 
 <div id="countdown"></div>
 <p id="note"></p>
-<!-- JavaScript includes -->
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script src="assets/task/countdown.js"></script>
-<script src="assets/js/script.js"></script>
+<script type="text/javascript">
+var note = $('#note'),
+        ts = new Date(2017, 1, 1),
+        newYear = true;
 
+    if((new Date()) > ts){
+        // The new year is here! Count towards something else.
+        // Notice the *1000 at the end - time must be in milliseconds
+        ts = (new Date()).getTime() + 10*24*60*60*1000;
+        newYear = false;
+    }
+
+    $('#countdown').countdown({
+        timestamp   : ts,
+        callback    : function(days, hours, minutes, seconds){
+
+            var message = "为了梦想, 一起加油";
+            // message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+            // message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+            // message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+            // message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+            if(newYear) {
+                message += ", 一醉到天明!";
+            }
+            else {
+                message += ", 明天就醒来了";
+            }
+            note.html(message);
+        }
+    });
+</script>
 </body>
 </html>
 
