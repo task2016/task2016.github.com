@@ -47,6 +47,7 @@
                 radius : '60%',
                 min:0,
                 max:151.8,
+                precision: 0,
                 splitNumber: 10,       // 分割段数，默认为5
                 axisLine: {            // 坐标轴线
                     lineStyle: {       // 属性lineStyle控制线条样式
@@ -88,7 +89,7 @@
                 },
                 detail : {
                     offsetCenter: [0, '65%'],
-                    formatter:'finished {value}MUSD',
+                    formatter:'finished 73.3%',
                     textStyle: {       // 其余属性默认使用全局文本样式
                         color: 'auto',
                         fontWeight: 'bolder',
@@ -104,6 +105,7 @@
                 radius : '60%',
                 min:0,
                 max:147.4,
+                precision: 0,
                 splitNumber: 10,       // 分割段数，默认为5
                 axisLine: {            // 坐标轴线
                     lineStyle: {       // 属性lineStyle控制线条样式
@@ -143,7 +145,7 @@
                 },
                 detail : {
                     offsetCenter: [0, '65%'],
-                    formatter:'finished {value}MUSD',
+                    formatter:'finished 62.2%',
                     textStyle: {       // 其余属性默认使用全局文本样式
                         color: 'auto',
                         fontWeight: 'bolder',
@@ -159,8 +161,8 @@
     myChart.setOption(option);
     window.onresize = myChart.resize;
     setInterval(function (){
-        option.series[0].data[0].value = 73.3;
-        option.series[1].data[0].value = 62.2;
+        option.series[0].data[0].value = 0.733*151.8;
+        option.series[1].data[0].value = 0.622*147.4;
         myChart.setOption(option, true);
     }, 300);
 </script>
