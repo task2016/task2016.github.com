@@ -35,7 +35,7 @@
     // 基于准备好的dom，初始化echarts图表
     var myChart = echarts.init(document.getElementById('main'));
     var a_max = 151.8
-    var a_value = 127.0
+    var a_value = 128.1
     var a_rate = a_value / a_max
 
     var b_max = 147.4
@@ -98,7 +98,7 @@
                 },
                 detail : {
                     offsetCenter: [0, '62%'],
-                    formatter:'{value} M \n\n Finished 83.6%',
+                    formatter:'{value} M \n\n Finished 84.4%',
                     textStyle: {       // 其余属性默认使用全局文本样式
                         color: '#015AFF',
                         fontWeight: 'bolder',
@@ -189,7 +189,7 @@ var note = $('#note'),
     $('#countdown').countdown({
         timestamp   : ts,
         callback    : function(days, hours, minutes, seconds){
-            var message = "<br /> * 以上OIT数据更新于2016年12月20日 <br /> * 以上Sales数据更新于2016年12月20日";
+            var message = "<br /> * 以上OIT数据更新于2016年12月21日 <br /> * 以上Sales数据更新于2016年12月21日";
             // message += days + "天";
             // message += hours + "时" + ", ";
             // message += minutes + "分";
